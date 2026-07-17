@@ -1,17 +1,17 @@
 // Siteyi güncellerken yalnızca bu dosyayı düzenlemeniz yeterlidir.
 window.KAGE_CONFIG = Object.freeze({
-  projectVersion: '1.6.35',
-  minecraftVersion: '1.21.90+',
+  projectVersion: "1.6.44",
+  minecraftVersion: "1.21.90+",
   server: {
-    address: '', // Örnek: play.siteadi.com
+    address: "", // Örnek: play.siteadi.com
     port: 19132,
-    maxPlayers: 30
+    maxPlayers: 20,
   },
-  discordUrl: '',
-  downloadUrl: '',
+  discordUrl: "",
+  downloadUrl: "",
   announcement: {
     enabled: true,
-    id: 'npc-integration-2026-07',
-    text: 'NPC animasyon sistemi tamamlandı • Ana paket entegrasyonu sırada'
-  }
+    id: "v1644-release-2026-07",
+    text: "v1.6.44 yayında • NPC sistemi birleşti • Kara Borsa ve 8 ekonomik olay eklendi",
+  },
 });

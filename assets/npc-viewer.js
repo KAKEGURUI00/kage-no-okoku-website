@@ -3,7 +3,12 @@
   if (!canvases.length || !window.skinview3d) return;
   const viewers = canvases.map((canvas, index) => {
     const box = canvas.parentElement;
-    const viewer = new skinview3d.SkinViewer({ canvas, width: Math.max(240, box.clientWidth), height: 330, skin: canvas.dataset.skin });
+    const viewer = new skinview3d.SkinViewer({
+      canvas,
+      width: Math.max(240, box.clientWidth),
+      height: 330,
+      skin: canvas.dataset.skin,
+    });
     viewer.background = null;
     viewer.zoom = 0.82;
     viewer.fov = 44;
@@ -15,10 +20,11 @@
     viewer.cameraLight.intensity = 0.8;
     return { viewer, box };
   });
-  const resize = () => viewers.forEach(({ viewer, box }) => {
-    viewer.width = Math.max(220, Math.floor(box.clientWidth));
-    viewer.height = window.innerWidth < 640 ? 285 : 330;
-  });
+  const resize = () =>
+    viewers.forEach(({ viewer, box }) => {
+      viewer.width = Math.max(220, Math.floor(box.clientWidth));
+      viewer.height = window.innerWidth < 640 ? 285 : 330;
+    });
   window.addEventListener("resize", resize, { passive: true });
   resize();
 })();
