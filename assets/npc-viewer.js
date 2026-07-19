@@ -3,16 +3,19 @@
   if (!canvases.length) return;
   const addFallback = (canvas) => {
     const box = canvas.parentElement;
-    const fallback = document.createElement("div");
-    fallback.className = "skin-fallback";
-    fallback.setAttribute("aria-hidden", "true");
-    fallback.style.setProperty("--skin", `url("${canvas.dataset.skin}")`);
-    for (const part of ["head", "body", "arm-right", "arm-left", "leg-right", "leg-left"]) {
-      const piece = document.createElement("i");
-      piece.className = `skin-part ${part}`;
-      fallback.append(piece);
+    let fallback = box.querySelector(".skin-fallback");
+    if (!fallback) {
+      fallback = document.createElement("div");
+      fallback.className = "skin-fallback";
+      fallback.setAttribute("aria-hidden", "true");
+      fallback.style.setProperty("--skin", `url("${canvas.dataset.skin}")`);
+      for (const part of ["head", "body", "arm-right", "arm-left", "leg-right", "leg-left"]) {
+        const piece = document.createElement("i");
+        piece.className = `skin-part ${part}`;
+        fallback.append(piece);
+      }
+      box.prepend(fallback);
     }
-    box.prepend(fallback);
     return { box, badge: box.querySelector("span") };
   };
   const fallbackModels = canvases.map(addFallback);
