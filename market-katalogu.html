@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#080705" />
+    <meta
+      name="description"
+      content="Kage no Ōkoku v1.14.2 içindeki 478 ürünün alınma ve satılma durumları."
+    />
+    <meta property="og:title" content="Tam Market Kataloğu | Kage no Ōkoku" />
+    <meta
+      property="og:description"
+      content="Kage no Ōkoku v1.14.2 içindeki 478 ürünün alınma ve satılma durumları."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/guides/merkezi-market.webp" />
+    <title>Tam Market Kataloğu | Kage no Ōkoku</title>
+    <link rel="icon" href="assets/pack-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="assets/pages.css" />
+    <link rel="stylesheet" href="assets/details.css" />
+    <link rel="stylesheet" href="assets/guides.css" />
+  </head>
+  <body data-page="market-katalogu.html">
+    <div class="grain"></div>
+    <a class="skip-link" href="#icerik">İçeriğe geç</a>
+    <header>
+      <nav class="nav shell">
+        <a class="logo" href="index.html"
+          ><img src="assets/pack-icon.png" alt="Kage no Ōkoku" /><span
+            >KAGE NO ŌKOKU</span
+          ></a
+        ><button
+          class="menu-toggle"
+          aria-label="Menüyü aç"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+        <div class="nav-links">
+          <a href="index.html">Ana Sayfa</a
+          ><a href="sistemler.html">Sistemler</a
+          ><a href="npcler.html">NPC’ler</a
+          ><a class="active" href="rehber.html">Rehber</a
+          ><a href="gelistirme.html">Güncellemeler</a
+          ><a href="sunucu.html">Sunucu</a><a href="hakkinda.html">Hakkında</a>
+        </div>
+      </nav>
+    </header>
+    <nav class="guide-subnav shell" aria-label="Rehber bölümleri">
+      <a href="baslangic.html">Başlangıç</a
+      ><a href="market-katalogu.html">Market Kataloğu</a
+      ><a href="arastirma.html">Araştırma</a
+      ><a href="sahsiyetler.html">Şahsiyetler</a
+      ><a href="kasaba-yasami.html">Kasaba Yaşamı</a>
+    </nav>
+    <main id="icerik">
+      <section
+        class="guide-hero"
+        style="
+          --guide-image: url(&quot;assets/guides/merkezi-market.webp&quot;);
+        "
+      >
+        <div class="shell">
+          <span>478 GERÇEK ÜRÜN</span>
+          <h1>MARKET KATALOĞU</h1>
+          <p>
+            Ürün adını ara; alınabilir, satılabilir, yalnız merkeze satılır veya
+            tamamen kapalı durumunu gör.
+          </p>
+        </div>
+      </section>
+      <section class="guide-section">
+        <div class="shell">
+          <div class="market-summary">
+            <article><b>478</b><span>Toplam ürün</span></article>
+            <article><b>471</b><span>Alınır + satılır</span></article>
+            <article><b>6</b><span>Yalnız merkeze satılır</span></article>
+            <article><b>1</b><span>İşleme kapalı</span></article>
+          </div>
+          <div class="plain-box">
+            <b>Durumlar ne demek?</b>
+            <p>
+              <strong>Alınır + satılır:</strong> merkezî marketten satın
+              alabilir ve markete geri satabilirsin.
+              <strong>Yalnız satılır:</strong> market sana bu ürünü üretmez;
+              dünyada bulup merkeze satarsın. <strong>Kapalı:</strong> güvenlik
+              nedeniyle iki işlem de yapılmaz.
+            </p>
+          </div>
+          <div class="catalog-controls">
+            <input
+              id="catalogSearch"
+              type="search"
+              placeholder="Ürün ara: elmas, ekmek, odun…"
+              aria-label="Market ürünlerinde ara"
+            /><select id="catalogCategory" aria-label="Kategori">
+              <option value="all">Tüm kategoriler</option></select
+            ><select id="catalogStatus" aria-label="İşlem durumu">
+              <option value="all">Tüm durumlar</option>
+              <option value="both">Alınır + satılır</option>
+              <option value="sell-only">Yalnız merkeze satılır</option>
+              <option value="disabled">İşleme kapalı</option>
+            </select>
+          </div>
+          <p id="catalogResult" class="catalog-result"></p>
+          <div class="catalog-table-wrap">
+            <table class="catalog-table">
+              <thead>
+                <tr>
+                  <th>Ürün</th>
+                  <th>Kategori</th>
+                  <th>Temel değer</th>
+                  <th>Başlangıç stoku</th>
+                  <th>Tek işlem sınırı</th>
+                  <th>Durum</th>
+                </tr>
+              </thead>
+              <tbody id="catalogBody"></tbody>
+            </table>
+          </div>
+          <section class="special-market">
+            <h2>Özel ayrım</h2>
+            <div>
+              <article>
+                <h3>Yalnız merkeze satılan 6 ürün</h3>
+                <ul>
+                  <li>Antik Kalıntı</li>
+                  <li>Denizin Kalbi</li>
+                  <li>Yankı Parçası</li>
+                  <li>Nether Yıldızı</li>
+                  <li>Ölümsüzlük Totemi</li>
+                  <li>Ağır Çekirdek</li>
+                </ul>
+              </article>
+              <article>
+                <h3>İşleme tamamen kapalı</h3>
+                <p>
+                  <strong>Güçlendirilmiş Derin Taş</strong> market güvenliği
+                  nedeniyle alınamaz ve satılamaz.
+                </p>
+              </article>
+              <article>
+                <h3>Fiyat neden değişir?</h3>
+                <p>
+                  Gösterilen değer temel fiyattır. Stok seviyesi, ekonomik dünya
+                  olayı, meslek avantajı ve pazar politikası gerçek işlem
+                  fiyatını değiştirebilir.
+                </p>
+              </article>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="shell footer-grid">
+        <div>
+          <a class="logo" href="index.html"
+            ><img src="assets/pack-icon.png" alt="" /><span
+              >KAGE NO ŌKOKU</span
+            ></a
+          >
+          <p>Yaşayan bir Minecraft Bedrock krallığı.</p>
+        </div>
+        <div>
+          <b>OYUNCU REHBERİ</b><a href="baslangic.html">İlk Gün</a
+          ><a href="market-katalogu.html">Market</a
+          ><a href="arastirma.html">Araştırma</a>
+        </div>
+        <div>
+          <b>DÜNYA</b><a href="sahsiyetler.html">Şahsiyetler</a
+          ><a href="kasaba-yasami.html">Kasaba Yaşamı</a
+          ><a href="meslekler.html">Meslekler</a>
+        </div>
+        <span>© 2026 Kage no Ōkoku • v1.14.2</span>
+      </div>
+    </footer>
+    <script src="assets/config.js"></script>
+    <script src="assets/app.js"></script>
+    <script src="assets/market-catalog.js"></script>
+    <script src="assets/catalog-viewer.js"></script>
+  </body>
+</html>

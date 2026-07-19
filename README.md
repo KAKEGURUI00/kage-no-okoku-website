@@ -18,7 +18,7 @@ Cloudflare Pages panelinde **Direct Upload** seçin ve bu klasörün tamamını 
 
 ## Paket bilgileri
 
-- Proje: Kage no Ōkoku v1.6.44 geliştirme dönemi
+- Proje: Kage no Ōkoku v1.14.2 oyuncu rehberi ve sistem kataloğu
 - Minimum Minecraft Bedrock: 1.21.90
 - Sayfa dili: Türkçe
 - Addon paketi site dosyalarına dahil değildir.

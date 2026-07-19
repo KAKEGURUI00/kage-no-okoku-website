@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#080705" />
+    <meta
+      name="description"
+      content="Altı araştırma dalı, 36 teknoloji, maliyetler ve puan kazanma yolları."
+    />
+    <meta
+      property="og:title"
+      content="Araştırma ve Teknoloji | Kage no Ōkoku"
+    />
+    <meta
+      property="og:description"
+      content="Altı araştırma dalı, 36 teknoloji, maliyetler ve puan kazanma yolları."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/guides/arastirma-merkezi.webp" />
+    <title>Araştırma ve Teknoloji | Kage no Ōkoku</title>
+    <link rel="icon" href="assets/pack-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="assets/pages.css" />
+    <link rel="stylesheet" href="assets/details.css" />
+    <link rel="stylesheet" href="assets/guides.css" />
+  </head>
+  <body data-page="arastirma.html">
+    <div class="grain"></div>
+    <a class="skip-link" href="#icerik">İçeriğe geç</a>
+    <header>
+      <nav class="nav shell">
+        <a class="logo" href="index.html"
+          ><img src="assets/pack-icon.png" alt="Kage no Ōkoku" /><span
+            >KAGE NO ŌKOKU</span
+          ></a
+        ><button
+          class="menu-toggle"
+          aria-label="Menüyü aç"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+        <div class="nav-links">
+          <a href="index.html">Ana Sayfa</a
+          ><a href="sistemler.html">Sistemler</a
+          ><a href="npcler.html">NPC’ler</a
+          ><a class="active" href="rehber.html">Rehber</a
+          ><a href="gelistirme.html">Güncellemeler</a
+          ><a href="sunucu.html">Sunucu</a><a href="hakkinda.html">Hakkında</a>
+        </div>
+      </nav>
+    </header>
+    <nav class="guide-subnav shell" aria-label="Rehber bölümleri">
+      <a href="baslangic.html">Başlangıç</a
+      ><a href="market-katalogu.html">Market Kataloğu</a
+      ><a href="arastirma.html">Araştırma</a
+      ><a href="sahsiyetler.html">Şahsiyetler</a
+      ><a href="kasaba-yasami.html">Kasaba Yaşamı</a>
+    </nav>
+    <main id="icerik">
+      <section
+        class="guide-hero"
+        style="
+          --guide-image: url(&quot;assets/guides/arastirma-merkezi.webp&quot;);
+        "
+      >
+        <div class="shell">
+          <span>6 DAL • 36 TEKNOLOJİ</span>
+          <h1>ARAŞTIRMA REHBERİ</h1>
+          <p>
+            Araştırma kasabanın ortak ilerlemesidir. Bir teknoloji seçilir;
+            puan, hazine finansmanı ve gerekiyorsa malzemeler tamamlanınca
+            açılır.
+          </p>
+        </div>
+      </section>
+      <section class="guide-section">
+        <div class="shell">
+          <div class="plain-box">
+            <b>Bir araştırma nasıl tamamlanır?</b>
+            <p>
+              1) Bir kasabaya bağlı ol. 2) Gereken Dünya ve kasaba seviyesine
+              ulaş. 3) Önceki teknolojileri aç. 4) Teknolojiyi etkin araştırma
+              seç. 5) Kasaba hazinesinden Kage maliyetini karşıla. 6)
+              Faaliyetlerle puan topla. 7) Malzeme isteniyorsa teslim et.
+            </p>
+          </div>
+          <h2 class="guide-title">Araştırma puanı nasıl kazanılır?</h2>
+          <div class="earn-grid">
+            <article>
+              <b>25</b>
+              <h3>Meslek siparişi</h3>
+              <p>Olay başına 25, günlük kategori sınırı 80.</p>
+            </article>
+            <article>
+              <b>5</b>
+              <h3>Keşif</h3>
+              <p>Olay başına 5, günlük kategori sınırı 40.</p>
+            </article>
+            <article>
+              <b>5</b>
+              <h3>Kasaba savunması</h3>
+              <p>Olay başına 5, günlük kategori sınırı 80.</p>
+            </article>
+            <article>
+              <b>8</b>
+              <h3>Şahsiyet hizmeti</h3>
+              <p>Olay başına 8, günlük kategori sınırı 40.</p>
+            </article>
+            <article>
+              <b>30</b>
+              <h3>Dünya istilası</h3>
+              <p>Olay başına 30, günlük kategori sınırı 80.</p>
+            </article>
+            <article>
+              <b>15</b>
+              <h3>Kervan</h3>
+              <p>Olay başına 15, günlük kategori sınırı 80.</p>
+            </article>
+          </div>
+          <p class="notice">
+            Bir kasaba bir günde en fazla 250 araştırma puanı kazanabilir. Etkin
+            araştırma yoksa puanlar kaybolmaz; atanmamış puan olarak saklanır.
+          </p>
+          <div id="researchBranches" class="research-branches"></div>
+          <section class="faq">
+            <h2 class="guide-title">Neden teknoloji açılmıyor?</h2>
+            <details>
+              <summary>Puan dolu ama tamamlanmadı</summary>
+              <p>
+                Kage finansmanı ödenmemiş veya istenen malzeme teslim edilmemiş
+                olabilir.
+              </p>
+            </details>
+            <details>
+              <summary>Teknoloji seçilemiyor</summary>
+              <p>
+                Önceki teknoloji, Dünya seviyesi veya kasaba seviyesi eksiktir.
+              </p>
+            </details>
+            <details>
+              <summary>Bilgin NPC puan üretmiyor</summary>
+              <p>
+                Eğitim Merkezi açılmalı, etkin araştırma bulunmalı ve kasabada
+                bilgin olmalıdır. NPC katkısı teknoloji puanının en fazla
+                %30’una ulaşabilir.
+              </p>
+            </details>
+          </section>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="shell footer-grid">
+        <div>
+          <a class="logo" href="index.html"
+            ><img src="assets/pack-icon.png" alt="" /><span
+              >KAGE NO ŌKOKU</span
+            ></a
+          >
+          <p>Yaşayan bir Minecraft Bedrock krallığı.</p>
+        </div>
+        <div>
+          <b>OYUNCU REHBERİ</b><a href="baslangic.html">İlk Gün</a
+          ><a href="market-katalogu.html">Market</a
+          ><a href="arastirma.html">Araştırma</a>
+        </div>
+        <div>
+          <b>DÜNYA</b><a href="sahsiyetler.html">Şahsiyetler</a
+          ><a href="kasaba-yasami.html">Kasaba Yaşamı</a
+          ><a href="meslekler.html">Meslekler</a>
+        </div>
+        <span>© 2026 Kage no Ōkoku • v1.14.2</span>
+      </div>
+    </footer>
+    <script src="assets/config.js"></script>
+    <script src="assets/app.js"></script>
+    <script src="assets/research-data.js"></script>
+    <script src="assets/research-viewer.js"></script>
+  </body>
+</html>
