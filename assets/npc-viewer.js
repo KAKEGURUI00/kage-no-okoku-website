@@ -27,7 +27,7 @@
     part(model,"head",64,64,64,0,-112,0); part(model,"body",64,96,32,0,-32,0);
     part(model,"rightArm",32,96,32,-48,-32,0); part(model,"leftArm",32,96,32,48,-32,0);
     part(model,"rightLeg",32,96,32,-16,64,0); part(model,"leftLeg",32,96,32,16,64,0);
-    box.insertBefore(scene,canvas); canvas.hidden=true; box.querySelector(".skin-fallback")?.remove(); box.classList.add("css-model-ready");
+    box.insertBefore(scene,canvas); canvas.hidden=true; box.classList.add("css-model-ready");
     const badge=box.querySelector("span"); if(badge) badge.textContent="360° • SÜRÜKLE";
     let angle=-22+index*5,tilt=-7,drag=false,sx=0,sy=0;
     const draw=()=>model.style.transform=`rotateX(${tilt}deg) rotateY(${angle}deg)`; draw();
