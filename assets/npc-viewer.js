@@ -1,56 +1,38 @@
-(async () => {
+(() => {
   const canvases = [...document.querySelectorAll("canvas[data-skin]")];
   if (!canvases.length) return;
-  const addFallback = (canvas) => {
-    const box = canvas.parentElement;
-    let fallback = box.querySelector(".skin-fallback");
-    if (!fallback) {
-      fallback = document.createElement("div");
-      fallback.className = "skin-fallback";
-      fallback.setAttribute("aria-hidden", "true");
-      fallback.style.setProperty("--skin", `url("${canvas.dataset.skin}")`);
-      for (const part of ["head", "body", "arm-right", "arm-left", "leg-right", "leg-left"]) {
-        const piece = document.createElement("i");
-        piece.className = `skin-part ${part}`;
-        fallback.append(piece);
-      }
-      box.prepend(fallback);
-    }
-    return { box, badge: box.querySelector("span") };
+  const textures = {
+    head:[[8,8],[24,8],[0,8],[16,8],[8,0],[16,0]], body:[[20,20],[32,20],[16,20],[28,20],[20,16],[28,16]],
+    rightArm:[[44,20],[52,20],[40,20],[48,20],[44,16],[48,16]], leftArm:[[36,52],[44,52],[32,52],[40,52],[36,48],[40,48]],
+    rightLeg:[[4,20],[12,20],[0,20],[8,20],[4,16],[8,16]], leftLeg:[[20,52],[28,52],[16,52],[24,52],[20,48],[24,48]]
   };
-  const fallbackModels = canvases.map(addFallback);
-  if (!window.skinview3d?.SkinViewer) {
-    fallbackModels.forEach(({ box, badge }) => {
-      box.classList.add("model-fallback");
-      if (badge) badge.textContent = "KARAKTER ÖNİZLEMESİ";
-    });
-    return;
+  const faces = ["front","back","right","left","top","bottom"];
+  function part(model,name,w,h,d,x,y,z){
+    const el=document.createElement("div"); el.className=`css-cuboid ${name}`;
+    el.style.cssText=`width:${w}px;height:${h}px;transform:translate3d(${x-w/2}px,${y-h/2}px,${z-d/2}px)`;
+    textures[name].forEach(([tx,ty],i)=>{
+      const f=document.createElement("i"); f.className=`css-face ${faces[i]}`;
+      let rule=`--tx:${-tx*8}px;--ty:${-ty*8}px;`;
+      if(i<2) rule+=`width:${w}px;height:${h}px;transform:rotateY(${i?180:0}deg) translateZ(${d/2}px)`;
+      else if(i<4) rule+=`width:${d}px;height:${h}px;left:${(w-d)/2}px;transform:rotateY(${i===2?90:-90}deg) translateZ(${w/2}px)`;
+      else rule+=`width:${w}px;height:${d}px;top:${(h-d)/2}px;transform:rotateX(${i===4?90:-90}deg) translateZ(${h/2}px)`;
+      f.style.cssText=rule; el.append(f);
+    }); model.append(el);
   }
-  const viewers = canvases.map((canvas, index) => {
-    const { box, badge } = fallbackModels[index];
-    const viewer = new skinview3d.SkinViewer({ canvas, width: Math.max(240, box.clientWidth), height: 330 });
-    viewer.background = null;
-    viewer.zoom = 0.82;
-    viewer.fov = 44;
-    viewer.autoRotate = true;
-    viewer.autoRotateSpeed = 0.55 + (index % 3) * 0.08;
-    viewer.animation = new skinview3d.IdleAnimation();
-    viewer.animation.speed = 0.7;
-    viewer.globalLight.intensity = 2.4;
-    viewer.cameraLight.intensity = 0.8;
-    viewer.loadSkin(canvas.dataset.skin).then(() => requestAnimationFrame(() => {
-      box.classList.add("model-ready");
-      if (badge) badge.textContent = "360° MODEL";
-    })).catch(() => {
-      box.classList.add("model-fallback");
-      if (badge) badge.textContent = "KARAKTER ÖNİZLEMESİ";
-    });
-    return { viewer, box };
+  canvases.forEach((canvas,index)=>{
+    const box=canvas.parentElement, scene=document.createElement("div"), model=document.createElement("div");
+    scene.className="css-skin-scene"; model.className="css-skin-model";
+    scene.setAttribute("role","img"); scene.setAttribute("aria-label",canvas.getAttribute("aria-label")||"Döndürülebilir NPC modeli");
+    scene.style.setProperty("--skin",`url("${canvas.dataset.skin}")`); scene.append(model);
+    part(model,"head",64,64,64,0,-112,0); part(model,"body",64,96,32,0,-32,0);
+    part(model,"rightArm",32,96,32,-48,-32,0); part(model,"leftArm",32,96,32,48,-32,0);
+    part(model,"rightLeg",32,96,32,-16,64,0); part(model,"leftLeg",32,96,32,16,64,0);
+    box.insertBefore(scene,canvas); canvas.hidden=true; box.querySelector(".skin-fallback")?.remove(); box.classList.add("css-model-ready");
+    const badge=box.querySelector("span"); if(badge) badge.textContent="360° • SÜRÜKLE";
+    let angle=-22+index*5,tilt=-7,drag=false,sx=0,sy=0;
+    const draw=()=>model.style.transform=`rotateX(${tilt}deg) rotateY(${angle}deg)`; draw();
+    scene.addEventListener("pointerdown",e=>{drag=true;sx=e.clientX;sy=e.clientY;scene.setPointerCapture(e.pointerId)});
+    scene.addEventListener("pointermove",e=>{if(!drag)return;angle+=(e.clientX-sx)*.7;tilt=Math.max(-28,Math.min(24,tilt-(e.clientY-sy)*.3));sx=e.clientX;sy=e.clientY;draw()});
+    scene.addEventListener("pointerup",()=>drag=false); scene.addEventListener("pointercancel",()=>drag=false);
   });
-  const resize = () => viewers.forEach(({ viewer, box }) => {
-    viewer.width = Math.max(220, Math.floor(box.clientWidth));
-    viewer.height = window.innerWidth < 640 ? 285 : 330;
-  });
-  window.addEventListener("resize", resize, { passive: true });
-  resize();
 })();
