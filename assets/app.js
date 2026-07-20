@@ -1,3 +1,13 @@
+// Manga bağlantısını eski önbellekten gelen sayfalarda bile ana menüde tut.
+const mainNav=document.querySelector('.nav-links');
+if(mainNav&&!mainNav.querySelector('a[href="manga.html"]')){
+ const mangaLink=document.createElement('a');
+ mangaLink.href='manga.html';
+ mangaLink.textContent='Manga';
+ if(document.body.dataset.page==='manga.html')mangaLink.classList.add('active');
+ const before=mainNav.querySelector('a[href="gelistirme.html"],a[href="sunucu.html"]');
+ mainNav.insertBefore(mangaLink,before);
+}
 const toggle=document.querySelector('.menu-toggle'),links=document.querySelector('.nav-links');
 toggle?.addEventListener('click',()=>{const open=links.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open))});
 links?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
